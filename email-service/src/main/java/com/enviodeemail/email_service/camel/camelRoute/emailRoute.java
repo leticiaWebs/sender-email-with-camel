@@ -1,4 +1,4 @@
-package com.enviodeemail.email_service.camelRoute;
+package com.enviodeemail.email_service.camel.camelRoute;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
