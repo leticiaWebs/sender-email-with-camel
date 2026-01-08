@@ -1,20 +1,25 @@
 package com.enviodeemail.email_service.controller;
 
-import com.enviodeemail.email_service.rest.EmailService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.enviodeemail.email_service.domain.Email;
+import org.apache.camel.ProducerTemplate;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
 @RestController
+@RequestMapping("/emails")
 public class EmailController {
 
-    private final EmailService emailService;
+    private final ProducerTemplate producerTemplate;
 
-    @GetMapping("/sendEmail")
-    public String sendEmail() {
-        emailService.sendEmail("test@mail.com","Testing Email Service",
-                "This is a test email.");
-        return "Email sent!";
-    }
+   public EmailController(ProducerTemplate producerTemplate){
+       this.producerTemplate = producerTemplate;
+   }
+
+   @PostMapping
+    public void send(@RequestBody Email email){
+       producerTemplate.sendBody("direct:send-email", email);
+   }
+
 }
