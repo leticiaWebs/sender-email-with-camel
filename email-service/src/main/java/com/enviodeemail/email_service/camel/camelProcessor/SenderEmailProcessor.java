@@ -7,16 +7,20 @@ import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
 
 @Component
-//public class SenderEmailProcessor implements Processor {
-//
-//    private final EmailService emailService;
-//
-//    public SenderEmailProcessor(EmailService emailService) {
-//        this.emailService = emailService;
-//    }
-//
-//
-//}
+public class SenderEmailProcessor implements Processor {
+
+    private final EmailService emailService;
+
+    public SenderEmailProcessor(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+
+    @Override
+    public void process(Exchange exchange) throws Exception {
+
+    }
+}
 
 
 
