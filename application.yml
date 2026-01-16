@@ -1,15 +1,9 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: fireflyspacial@gmail.com
+    password: whiskassache99!!!
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true

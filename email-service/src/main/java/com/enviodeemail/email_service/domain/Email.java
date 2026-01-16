@@ -4,7 +4,7 @@ package com.enviodeemail.email_service.domain;
 public class Email {
 
     private String to;
-    private String email;
+    private String subject;
     private String body;
 
     public String getTo() {
@@ -15,6 +15,14 @@ public class Email {
         this.to = to;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     public String getBody() {
         return body;
     }
@@ -23,12 +31,11 @@ public class Email {
         this.body = body;
     }
 
-
-    public String getEmail() {
-        return email;
+    public Email(String to, String subject, String body) {
+        this.to = to;
+        this.subject = subject;
+        this.body = body;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
 }
