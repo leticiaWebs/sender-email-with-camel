@@ -6,8 +6,12 @@ import com.enviodeemail.email_service.camel.camelProcessor.ValidatorEmailProcess
 import org.apache.camel.ProducerTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
+@RequestMapping("/email")
 public class EmailService {
 
     private final JavaMailSender javaMailSender;
@@ -20,7 +24,7 @@ public class EmailService {
         this.producerTemplate = producerTemplate;
     }
 
-
+    @PostMapping("/send")
     public void sendEmail(Email email){
         validatorEmailProcessor.validate(email);
         producerTemplate.sendBody("direct:send-email", email);
