@@ -16,15 +16,10 @@ public class EmailRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(Exception.class)
-                .handled(true)
-                .log("Erro ao enviar email: ${exception.message}")
-                .setBody(simple("${exception.message}"));
-
         from("direct:send-email")
                 .routeId("send-email-route")
                 .log("Recebido email: ${body}")
-                .process(validatorEmailProcessor.toString())
+                .process(validatorEmailProcessor)
                 .process(senderEmailProcessor)
                 .log("Email enviado com sucesso para ${body.to}");
     }
