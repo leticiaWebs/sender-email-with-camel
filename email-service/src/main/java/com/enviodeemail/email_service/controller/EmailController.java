@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/emails")
+@RequestMapping("/email")
 public class EmailController {
 
-    private final EmailService emailSenderService;
-    private final ProducerTemplate producerTemplate;
 
-   public EmailController( EmailService emailSenderService, ProducerTemplate producerTemplate){
-       this.emailSenderService = emailSenderService;
-       this.producerTemplate = producerTemplate;
-   }
+    private final EmailService emailService;
 
-   @PostMapping
-    public void send(@RequestBody Email email){
-       producerTemplate.sendBody("direct:send-email", email);
-   }
+    public EmailController(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+    @PostMapping("/send")
+    public String send(@RequestBody Email email) {
+        emailService.send(email);
+        return "Email enviado para fila Camel.";
+    }
 
 }
